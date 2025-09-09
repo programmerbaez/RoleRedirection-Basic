@@ -69,14 +69,28 @@
                         <span class="text-xl font-bold text-gray-900 dark:text-white">Sistema de Redireccionamiento de Roles</span>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md transition duration-200">
-                            <i class="fas fa-sign-in-alt mr-2"></i>
-                            Iniciar Sesión
-                        </a>
-                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition duration-200">
-                            <i class="fas fa-user-plus mr-2"></i>
-                            Registrarse
-                        </a>
+                        @auth
+                            <a href="{{ route('dashboard') }}" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md transition duration-200">
+                                <i class="fas fa-tachometer-alt mr-2"></i>
+                                Dashboard
+                            </a>
+                            <form method="POST" action="{{ route('logout') }}" class="inline">
+                                @csrf
+                                <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition duration-200">
+                                    <i class="fas fa-sign-out-alt mr-2"></i>
+                                    Cerrar Sesión
+                                </button>
+                            </form>
+                        @else
+                            <a href="{{ route('login') }}" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md transition duration-200">
+                                <i class="fas fa-sign-in-alt mr-2"></i>
+                                Iniciar Sesión
+                            </a>
+                            <a href="{{ route('register') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition duration-200">
+                                <i class="fas fa-user-plus mr-2"></i>
+                                Registrarse
+                            </a>
+                        @endauth
                     </div>
                 </div>
             </div>
